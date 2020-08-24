@@ -18,28 +18,36 @@ public class Goods {
         return sellIn;
     }
 
-    private void subSellIn() {
-        this.sellIn -= 1;
+    public void setSellIn(int sellIn) {
+        this.sellIn = sellIn;
     }
 
     public int getQuality() {
         return quality;
     }
 
-    private void subQuality() {
-        if (this.sellIn > 0) {
-            this.quality -= 1;
+    public void setQuality(int quality) {
+        this.quality = quality;
+    }
+
+    protected void updateSellIn() {
+        setSellIn(getSellIn() - 1);
+    }
+
+    protected void updateQuality() {
+        if (getSellIn() > 0) {
+            setQuality(getQuality() - 1);
         } else {
-            this.quality -= 2;
+            setQuality(getQuality() - 2);
         }
-        if (this.quality < 0) {
-            this.quality = 0;
+        if (getQuality() < 0) {
+            setQuality(0);
         }
     }
 
     public void update() {
-        subSellIn();
-        subQuality();
+        updateQuality();
+        updateSellIn();
     }
 
 }
