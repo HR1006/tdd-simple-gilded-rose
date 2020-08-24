@@ -50,4 +50,16 @@ public class GoodsTest {
         }
     }
 
+    @Test
+    void BackstagePassWhenOutTheWarrantyPeriod() {
+        int[][] generalGoodsDataArray = {
+                {0, 20, -1, 0}
+        };
+        for (int[] generalGoodsData : generalGoodsDataArray) {
+            BackstagePass goods = new BackstagePass(generalGoodsData[0], generalGoodsData[1]);
+            goods.update();
+            assert goods.getQuality() == generalGoodsData[3];
+        }
+    }
+
 }
